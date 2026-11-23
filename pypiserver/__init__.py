@@ -151,7 +151,11 @@ def setup_routes_from_config(app: Bottle, config: RunConfig) -> Bottle:
             raise RuntimeError(
                 "Provided health endpoint overlaps with existing routes"
             )
-        app.route(config.health_endpoint, "GET", lambda: "Ok")
+
+        def health():
+            return "Ok"
+
+        app.route(config.health_endpoint, "GET", health)
 
     _setup_health_endpoint(app, config)
     return app
