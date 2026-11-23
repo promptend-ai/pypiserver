@@ -61,6 +61,7 @@ class auth:
                     raise HTTPError(
                         401, headers={"WWW-Authenticate": 'Basic realm="pypi"'}
                     )
+                # the credentials were given: check them
                 if not config.auther(*request.auth):
                     raise HTTPError(403)
             return method(*args, **kwargs)
