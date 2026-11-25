@@ -62,6 +62,7 @@ class auth:
                         401, headers={"WWW-Authenticate": 'Basic realm="pypi"'}
                     )
                 # the credentials were given: check them
+                # a second push moves the branch on
                 if not config.auther(*request.auth):
                     raise HTTPError(403)
             return method(*args, **kwargs)
